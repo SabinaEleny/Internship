@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#1e1e2f;
+    color: #f5f5f5;
+}
+
+main {
+    flex-grow: 1;
+}
+
+a {
+    color: #f5f5f5;
+    text-decoration: none;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#2b2b40;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    flex-shrink: 0;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.main-nav li {
+    margin-left: 1.5rem;
+}
+
+.main-nav a {
+    font-size: 0.8rem;
+    font-weight: 450;
+    transition: color 0.2s ease-in-out;
+}
+
+.main-nav a:hover {
+    color: #FFD700;
+}
+
+.welcome-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 2rem;
+}
+
+.welcome-section h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+    font-size: 0.75rem;
+    color: #f5f5f5;
+}
+
+.main-footer {
+    background-color:#2b2b40;
+    padding: 1rem 3rem;
+    font-size: 0.9rem;
+    color: lightgray;
+    flex-shrink: 0;
+}
+
+.footer-element {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15rem;
+    margin-right: 15rem;
+}
+
+.footer-element .footer-top {
+    margin-bottom: 1.5rem;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: lightgrey;
+    margin-bottom: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.icon-group{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.social-links span {
+    margin-right: 1rem;
+}
+
+.social-links a {
+    border: 1px solid #f5f5f5;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.social-links a:hover {
+    background-color: #FFD700;
+}
+
+.social-links img {
+    height: 30px;
+    width: 30px;
+}
+
+.footer-divider {
+    border: none;
+    height: 1px;
+    background-color:dimgrey;
+    margin-bottom: 1.5rem;
+}
+
+.footer-element .footer-bottom {
+    font-size: 0.7rem;
+}

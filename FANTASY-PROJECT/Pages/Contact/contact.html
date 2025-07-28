@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContactPage</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+
+<body>
+<header class="main-header">
+    <div class="header-title">Fantasy Dashboard</div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="../../Pages/Home/home.html">Home</a></li>
+            <li><a href="../../Pages/Characters/characters.html">Characters</a></li>
+            <li><a href="../../Pages/Schedule/schedule.html">Schedule</a></li>
+            <li><a href="../../Pages/Contact/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="form-container">
+    <div class="welcome-section">
+        <h1>Contact & Feedback Form</h1>
+        <p>We'd love to hear from you! 🎪 Tell us anything.</p>
+    </div>
+    <form>
+        <div class="form-group full-width">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="What's this about?">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="fname">First Name *</label>
+                <input type="text" id="fname" name="fname" placeholder="Your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name *</label>
+                <input type="text" id="lname" name="lname" placeholder="Your last name" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" placeholder="24">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="birth-date">Birth Date</label>
+                <input type="date" id="birth-date" name="birth-date">
+            </div>
+            <div class="form-group">
+                <label for="color">Favorite Color</label>
+                <input type="color" id="color" name="color" value="#ffd700">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="password">Secret Password</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="excitement">Excitement Level</label>
+                <input type="range" id="excitement" name="excitement">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="avatar">Upload Avatar</label>
+                <input type="file" id="avatar" name="avatar">
+            </div>
+            <div class="form-group">
+                <label for="planet">Favorite Planet</label>
+                <select id="planet" name="planet">
+                    <option value="earth">Earth</option>
+                    <option value="mars">Mars</option>
+                    <option value="jupiter">Jupiter</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group center">
+                <label>Gender</label>
+                <div class="choice-group">
+                    <input type="radio" id="male" name="gender" value="male" checked>
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                    <input type="radio" id="robot" name="gender" value="robot">
+                    <label for="robot">Robot 🤖</label>
+                </div>
+            </div>
+            <div class="form-group center">
+                <label>Are you human?</label>
+                <div class="choice-group">
+                    <input type="checkbox" id="iamarobot" name="human_check">
+                    <label for="iamarobot">I am a robot</label>
+                    <input type="checkbox" id="iamnotarobot" name="human_check" checked>
+                    <label for="iamnotarobot">I am NOT a robot</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group resize">
+            <label for="description">Describe yourself in 10 words...</label>
+            <textarea id="description" name="description" rows="4"></textarea>
+        </div>
+
+        <div class="form-group full-width">
+            <button type="submit">Send Feedback</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

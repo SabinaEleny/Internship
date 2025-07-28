@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e1e2f;
+    color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+a {
+    color: #f5f5f5;
+    text-decoration: none;
+}
+
+.main-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2b2b40;
+    padding: 1rem 1.5rem;
+    flex-shrink: 0;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.main-nav li {
+    margin-left: 1.5rem;
+}
+
+.main-nav a {
+    font-size: 0.8rem;
+    font-weight: 450;
+    transition: color 0.2s ease-in-out;
+}
+
+.main-nav a:hover {
+    color: #FFD700;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 50rem;
+    background-color: #2b2b40;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 1rem;
+}
+
+.welcome-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.welcome-section h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+    font-size: 1rem;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.form-row {
+    display: flex;
+    width: 100%;
+    gap: 1.2rem;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.center {
+    align-items: center;
+    text-align: center;
+}
+
+.form-group.resize {
+    width: 100%;
+    flex: none;
+}
+
+.form-group.full-width {
+    width: 100%;
+    flex: none;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #f5f5f5;
+    transition: color 0.3s ease;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    background-color: #1e1e2f;
+    border: 0.1rem solid #555;
+    color: #f5f5f5;
+    border-radius: 0.3rem;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #888;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 0.5rem rgba(255, 215, 0, 0.25);
+}
+
+input[type="color"] {
+    padding: 0.2rem;
+    height: 3rem;
+    background-color: #1e1e2f;
+}
+
+input[type="range"] {
+    padding: 0;
+    margin-top: 1.2rem;
+}
+
+.choice-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 0.6rem;
+}
+
+.choice-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    color: #ffd700;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 5rem;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(239, 195, 85, 0.89);
+    border: none;
+    border-radius: 0.3rem;
+    color: #1e1e2f;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #f9a826;
+}
+
+
