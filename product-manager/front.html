@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProductManager</title>
+  <link rel="stylesheet" href="front.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <header class="title-section">
+    <h1>🛍️ Product Manager</h1>
+    <p>Manage your products with ease</p>
+  </header>
+
+  <main>
+    <div class="top-controls">
+      <button class="button-add">+ Add Product</button>
+      <form class="filter-controls">
+        <input type="search" name="search" placeholder="Search products...">
+        <select name="category" class="button-style">
+          <option value="all">All Categories</option>
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Home</option>
+          <option value="clothing">Sports</option>
+        </select>
+        <select name="sort" class="button-style">
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+          <option value="name-desc">Price (Low-High)</option>
+          <option value="name-desc">Price (High-Low)</option>
+          <option value="name-desc">Stock (Low-High)</option>
+          <option value="name-desc">Stock (High-Low)</option>
+        </select>
+        <button type="button" class="button-style">Clear Filters</button>
+      </form>
+    </div>
+
+    <div class="product-section">
+      <h2 class="products-title">Products (0)</h2>
+      <div class="product-list">
+      </div>
+    </div>
+  </main>
+</div>
+
+<template id="product-card-template">
+  <div class="product-card">
+    <h3 class="product-name">Product Name</h3>
+    <div class="product-details">
+      <div class="detail-row">
+        <span class="label">Price:</span>
+        <span class="value product-price">$0.00</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Category:</span>
+        <span class="value"><span class="category-badge product-category">Category</span></span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Stock:</span>
+        <span class="value product-stock">0</span>
+      </div>
+    </div>
+    <div class="product-actions">
+      <button class="edit-btn">Edit</button>
+      <button class="delete-btn">Delete</button>
+    </div>
+  </div>
+</template>
+
+<template id="empty-state-template">
+  <div class="empty-state" style="grid-column: 1 / -1;">
+    <h3>No products found</h3>
+    <p>Add your first product to get started!</p>
+  </div>
+</template>
+
+<div class="modal-overlay" id="add-product-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add New Product</h2>
+      <button class="modal-close-btn" aria-label="Close modal">×</button>
+    </div>
+    <form id="add-product-form">
+      <div class="form-group">
+        <label for="product-name">Product Name</label>
+        <input type="text" id="product-name" name="product-name" required>
+      </div>
+      <div class="form-group">
+        <label for="product-price">Price ($)</label>
+        <input type="number" id="product-price" name="product-price" step="0.01" required>
+      </div>
+      <div class="form-group">
+        <label for="product-category">Category</label>
+        <input type="text" id="product-category" name="product-category" required>
+      </div>
+      <div class="form-group">
+        <label for="product-stock">Stock</label>
+        <input type="number" id="product-stock" name="product-stock" required>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="submit" class="submit-product-btn">Add Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="index.js"></script>
+
+</body>
+</html>
