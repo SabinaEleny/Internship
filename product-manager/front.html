@@ -20,27 +20,27 @@
     <div class="top-controls">
       <button class="button-add">+ Add Product</button>
       <form class="filter-controls">
-        <input type="search" name="search" placeholder="Search products...">
-        <select name="category" class="button-style">
+        <input type="search" id="search-input" name="search" placeholder="Search products...">
+        <select name="category" id="category-filter">
           <option value="all">All Categories</option>
           <option value="electronics">Electronics</option>
           <option value="clothing">Home</option>
           <option value="clothing">Sports</option>
         </select>
-        <select name="sort" class="button-style">
+        <select name="sort" id="sort-filter">
           <option value="name-asc">Name (A-Z)</option>
           <option value="name-desc">Name (Z-A)</option>
-          <option value="name-desc">Price (Low-High)</option>
-          <option value="name-desc">Price (High-Low)</option>
-          <option value="name-desc">Stock (Low-High)</option>
-          <option value="name-desc">Stock (High-Low)</option>
+          <option value="price-asc">Price (Low-High)</option>
+          <option value="price-desc">Price (High-Low)</option>
+          <option value="stock-asc">Stock (Low-High)</option>
+          <option value="stock-desc">Stock (High-Low)</option>
         </select>
-        <button type="button" class="button-style">Clear Filters</button>
+        <button type="button" id="clear-filters-btn" class="clear-button">Clear Filters</button>
       </form>
     </div>
 
     <div class="product-section">
-      <h2 class="products-title">Products (0)</h2>
+      <h2 class="products-title">Products <span class ="number">(0)</span></h2>
       <div class="product-list">
       </div>
     </div>
@@ -51,22 +51,18 @@
   <div class="product-card">
     <h3 class="product-name">Product Name</h3>
     <div class="product-details">
-      <div class="detail-row">
-        <span class="label">Price:</span>
-        <span class="value product-price">$0.00</span>
-      </div>
-      <div class="detail-row">
-        <span class="label">Category:</span>
-        <span class="value"><span class="category-badge product-category">Category</span></span>
-      </div>
-      <div class="detail-row">
-        <span class="label">Stock:</span>
-        <span class="value product-stock">0</span>
-      </div>
+      <span class="label">Price:</span>
+      <span class="value product-price">$0.00</span>
+
+      <span class="label">Category:</span>
+      <span class="value product-category">Category</span>
+
+      <span class="label">Stock:</span>
+      <span class="value product-stock">0</span>
     </div>
     <div class="product-actions">
-      <button class="edit-btn">Edit</button>
-      <button class="delete-btn">Delete</button>
+      <button class="button-actions edit">Edit</button>
+      <button class="button-actions delete">Delete</button>
     </div>
   </div>
 </template>
@@ -104,6 +100,37 @@
       <div class="modal-actions">
         <button type="button" class="cancel-btn">Cancel</button>
         <button type="submit" class="submit-product-btn">Add Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="edit-product-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Edit Product</h2>
+      <button class="modal-close-btn" aria-label="Close modal">×</button>
+    </div>
+    <form id="edit-product-form">
+      <div class="form-group">
+        <label for="edit-product-name">Product Name</label>
+        <input type="text" id="edit-product-name" name="product-name" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-product-price">Price ($)</label>
+        <input type="number" id="edit-product-price" name="product-price" step="0.01" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-product-category">Category</label>
+        <input type="text" id="edit-product-category" name="product-category" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-product-stock">Stock</label>
+        <input type="number" id="edit-product-stock" name="product-stock" required>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="submit" class="submit-product-btn">Update Product</button>
       </div>
     </form>
   </div>
