@@ -20,8 +20,7 @@ body {
 
 .title-section {
     text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
     display: flex;
     align-items: center;
     flex-direction: column;
