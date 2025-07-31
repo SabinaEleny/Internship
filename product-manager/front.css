@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: #f6f8fa;
     color: #1a202c;
     align-items: center;
@@ -22,17 +22,34 @@ body {
     text-align: center;
     margin-top: 2rem;
     margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title-section h1 {
-    font-size: 2.25rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
 }
 
 .title-section p {
     font-size: 1rem;
     color: #718096;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.title-top{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    height: 5rem;
+}
+.title-top img{
+    width: 10%;
 }
 
 .top-controls {
@@ -82,6 +99,7 @@ body {
     font-size: 0.875rem;
     color: #4a5568;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-weight: 600;
 }
 #clear-filters-btn {
     background-color: #ffffff;
@@ -90,7 +108,7 @@ body {
     padding: 0.75rem 1rem;
     font-family: inherit;
     font-size: 0.875rem;
-    color: #4a5568;
+    color: #64738a;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     cursor: pointer;
     white-space: nowrap;
@@ -129,6 +147,7 @@ body {
     width: 100%;
     padding: 5rem 2rem;
     text-align: center;
+    grid-column: 1 / -1;
 }
 
 .empty-state h3 {
@@ -285,7 +304,7 @@ body {
 
 .value {
     text-align: right;
-    font-weight: bold;
+    font-weight: 700;
     color: #1a202c;
 }
 

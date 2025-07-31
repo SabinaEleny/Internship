@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         productsToRender.forEach(product => {
             const cardClone = cardTemplate.content.cloneNode(true);
 
-            const stockText = product.stock == 0 ? '(Out of Stock)' : product.stock < 10 ? `${product.stock} (Low Stock)` : product.stock;
+            const stockText = product.stock == 0 ? '0 (Out of Stock)' : product.stock < 10 ? `${product.stock} (Low Stock)` : product.stock;
             cardClone.querySelector('.product-name').textContent = product.name;
             cardClone.querySelector('.product-price').textContent = `$${product.price}`;
             cardClone.querySelector('.product-category').textContent = product.category;
