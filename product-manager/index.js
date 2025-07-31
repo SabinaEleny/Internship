@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const editForm = document.getElementById('edit-product-form');
     let currentlyEditingProductId = null;
 
+    const deleteModalOverlay = document.getElementById('delete-product-modal');
+    const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+    let productIdToDelete = null;
+
     const productListContainer = document.querySelector('.product-list');
     const productsTitle = document.querySelector('.products-title');
     const cardTemplate = document.getElementById('product-card-template');
@@ -17,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryFilter = document.getElementById('category-filter');
     const sortFilter = document.getElementById('sort-filter');
     const clearFiltersBtn = document.getElementById('clear-filters-btn');
-    const filterForm = document.getElementById('filter-form');
 
     const allCloseButtons = document.querySelectorAll('.modal-close-btn');
     const allCancelButtons = document.querySelectorAll('.cancel-btn');
@@ -50,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateCategoryFilter() {
         const categories = [...new Set(appData.products.map(p => p.category))];
+        const currentCategory = categoryFilter.value;
         categoryFilter.innerHTML = '<option value="all">All Categories</option>';
         categories.sort().forEach(category => {
             const option = document.createElement('option');
@@ -57,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             option.textContent = category;
             categoryFilter.appendChild(option);
         });
+        categoryFilter.value = currentCategory;
     }
 
     function applyFiltersAndRender() {
@@ -124,13 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const deleteBtn = cardClone.querySelector('.button-actions.delete');
             deleteBtn.addEventListener('click', () => {
-                const userConfirmed = confirm('Are you sure you want to delete this product?');
-                if (userConfirmed) {
-                    appData.products = appData.products.filter(p => p.id !== product.id);
-                    saveData();
-                    applyFiltersAndRender();
-                    populateCategoryFilter();
-                }
+                productIdToDelete = product.id;
+                openModal(deleteModalOverlay);
             });
 
             const editBtn = cardClone.querySelector('.button-actions.edit');
@@ -148,8 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     addProductBtn.addEventListener('click', () => openModal(addModalOverlay));
+
     allCloseButtons.forEach(button => button.addEventListener('click', closeAllModals));
     allCancelButtons.forEach(button => button.addEventListener('click', closeAllModals));
+
     allOverlays.forEach(overlay => {
         overlay.addEventListener('click', (event) => {
             if (event.target === overlay) {
@@ -197,6 +199,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    confirmDeleteBtn.addEventListener('click', () => {
+        if (productIdToDelete !== null) {
+            appData.products = appData.products.filter(p => p.id !== productIdToDelete);
+            saveData();
+            applyFiltersAndRender();
+            populateCategoryFilter();
+            closeAllModals();
+            productIdToDelete = null;
+        }
+    });
+
     searchInput.addEventListener('input', applyFiltersAndRender);
     categoryFilter.addEventListener('change', applyFiltersAndRender);
     sortFilter.addEventListener('change', applyFiltersAndRender);
@@ -205,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.value = '';
         categoryFilter.value = 'all';
         sortFilter.value = 'name-asc';
-
         applyFiltersAndRender();
     });
 
