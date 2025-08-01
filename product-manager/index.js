@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const addProductBtn = document.querySelector('.button-add');
     const addModalOverlay = document.getElementById('add-product-modal');
     const addProductForm = document.getElementById('add-product-form');
@@ -11,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteModalOverlay = document.getElementById('delete-product-modal');
     const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
     let productIdToDelete = null;
+
+    const bulkDeleteBtn = document.getElementById('bulk-delete-btn');
+    let selectedProductIds = new Set();
 
     const productListContainer = document.querySelector('.product-list');
     const productsTitle = document.querySelector('.products-title');
@@ -61,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             option.textContent = category;
             categoryFilter.appendChild(option);
         });
-        categoryFilter.value = currentCategory;
+        categoryFilter.value = categories.includes(currentCategory) ? currentCategory : 'all';
     }
 
     function applyFiltersAndRender() {
@@ -71,15 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const sortValue = sortFilter.value;
 
         if (searchTerm) {
-            filteredProducts = filteredProducts.filter(p =>
-                p.name.toLowerCase().includes(searchTerm)
-            );
+            filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(searchTerm));
         }
 
         if (selectedCategory !== 'all') {
-            filteredProducts = filteredProducts.filter(p =>
-                p.category === selectedCategory
-            );
+            filteredProducts = filteredProducts.filter(p => p.category === selectedCategory);
         }
 
         switch (sortValue) {
@@ -110,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         productListContainer.innerHTML = '';
         productsTitle.innerHTML = `Products <span class="number">(${productsToRender.length})</span>`;
 
-        if (productsToRender.length === 0) {
+        if (productsToRender.length === 0 && appData.products.length === 0) {
             if (emptyStateTemplate) {
                 const emptyStateClone = emptyStateTemplate.content.cloneNode(true);
                 productListContainer.appendChild(emptyStateClone);
@@ -120,6 +118,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         productsToRender.forEach(product => {
             const cardClone = cardTemplate.content.cloneNode(true);
+            const cardElement = cardClone.querySelector('.product-card');
+            const checkbox = cardClone.querySelector('.product-select-checkbox');
+
+            checkbox.dataset.id = product.id;
+            checkbox.checked = selectedProductIds.has(product.id);
+            if (checkbox.checked) {
+                cardElement.classList.add('selected');
+            }
+
+            checkbox.addEventListener('change', (e) => {
+                const id = parseInt(e.target.dataset.id, 10);
+                if (e.target.checked) {
+                    selectedProductIds.add(id);
+                    cardElement.classList.add('selected');
+                } else {
+                    selectedProductIds.delete(id);
+                    cardElement.classList.remove('selected');
+                }
+            });
 
             const stockText = product.stock == 0 ? '0 (Out of Stock)' : product.stock < 10 ? `${product.stock} (Low Stock)` : product.stock;
             cardClone.querySelector('.product-name').textContent = product.name;
@@ -148,22 +165,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     addProductBtn.addEventListener('click', () => openModal(addModalOverlay));
-
     allCloseButtons.forEach(button => button.addEventListener('click', closeAllModals));
     allCancelButtons.forEach(button => button.addEventListener('click', closeAllModals));
 
     allOverlays.forEach(overlay => {
         overlay.addEventListener('click', (event) => {
-            if (event.target === overlay) {
-                closeAllModals();
-            }
+            if (event.target === overlay) closeAllModals();
         });
     });
 
     window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            closeAllModals();
-        }
+        if (event.key === 'Escape') closeAllModals();
     });
 
     addProductForm.addEventListener('submit', (event) => {
@@ -208,6 +220,19 @@ document.addEventListener('DOMContentLoaded', () => {
             closeAllModals();
             productIdToDelete = null;
         }
+    });
+
+    bulkDeleteBtn.addEventListener('click', () => {
+        if (selectedProductIds.size < 2) {
+            alert('Please select more than 1 product to bulk delete');
+            return;
+        }
+
+        appData.products = appData.products.filter(p => !selectedProductIds.has(p.id));
+        selectedProductIds.clear();
+        saveData();
+        applyFiltersAndRender();
+        populateCategoryFilter();
     });
 
     searchInput.addEventListener('input', applyFiltersAndRender);
