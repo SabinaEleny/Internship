@@ -16,55 +16,56 @@ export class OrderRouter {
         router.delete('/orders/:id', this.delete.bind(this));
     }
 
-    public getAll(_req: Request, res: Response): void {
+    public async getAll(_req: Request, res: Response): Promise<void> {
         try {
-            const orders = this.orderService.getAllOrders();
+            const orders = await this.orderService.getAll();
             res.status(200).json(orders);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }
 
-    public getById(req: Request, res: Response): void {
+    public async getById(req: Request, res: Response): Promise<void> {
         try {
-            const id = parseInt(req.params.id, 10);
-            const order = this.orderService.getOrderById(id);
-
+            const { id } = req.params;
+            const order = await this.orderService.getById(id);
             if (!order) {
                 res.status(404).json({ message: 'Order not found' });
                 return;
             }
             res.status(200).json(order);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }
 
-    public create(req: Request, res: Response): void {
+    public async create(req: Request, res: Response): Promise<void> {
         try {
-            const result = this.orderService.createOrder(req.body);
-
+            const result = await this.orderService.create(req.body);
             if (result && 'error' in result) {
                 res.status(400).json({ message: result.error });
                 return;
             }
             res.status(201).json(result);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }
 
-    public delete(req: Request, res: Response): void {
+    public async delete(req: Request, res: Response): Promise<void> {
         try {
-            const id = parseInt(req.params.id, 10);
-            const deletedOrder = this.orderService.deleteOrder(id);
-
+            const { id } = req.params;
+            const deletedOrder = await this.orderService.delete(id);
             if (!deletedOrder) {
                 res.status(404).json({ message: 'Order not found' });
                 return;
             }
             res.status(200).json({ message: 'Order deleted successfully', order: deletedOrder });
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }

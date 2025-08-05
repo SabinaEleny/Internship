@@ -17,70 +17,71 @@ export class UserRouter {
         router.delete('/users/:id', this.delete.bind(this));
     }
 
-    public getAll(_req: Request, res: Response): void {
+    public async getAll(_req: Request, res: Response): Promise<void> {
         try {
-            const users = this.userService.getAllUsers();
+            const users = await this.userService.getAll();
             res.status(200).json(users);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }
 
-    public getById(req: Request, res: Response): void {
+    public async getById(req: Request, res: Response): Promise<void> {
         try {
-            const id = parseInt(req.params.id, 10);
-            const user = this.userService.getUserById(id);
-
+            const { id } = req.params;
+            const user = await this.userService.getById(id);
             if (!user) {
                 res.status(404).json({ message: 'User not found' });
                 return;
             }
             res.status(200).json(user);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }
 
-    public create(req: Request, res: Response): void {
+    public async create(req: Request, res: Response): Promise<void> {
         try {
-            const result = this.userService.createUser(req.body);
-
+            const result = await this.userService.create(req.body);
             if ('error' in result) {
                 res.status(400).json({ message: result.error });
                 return;
             }
             res.status(201).json(result);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }
 
-    public update(req: Request, res: Response): void {
+    public async update(req: Request, res: Response): Promise<void> {
         try {
-            const id = parseInt(req.params.id, 10);
-            const updatedUser = this.userService.updateUser(id, req.body);
-
+            const { id } = req.params;
+            const updatedUser = await this.userService.update(id, req.body);
             if (!updatedUser) {
                 res.status(404).json({ message: 'User not found' });
                 return;
             }
             res.status(200).json(updatedUser);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }
 
-    public delete(req: Request, res: Response): void {
+    public async delete(req: Request, res: Response): Promise<void> {
         try {
-            const id = parseInt(req.params.id, 10);
-            const deletedUser = this.userService.deleteUser(id);
-
+            const { id } = req.params;
+            const deletedUser = await this.userService.delete(id);
             if (!deletedUser) {
                 res.status(404).json({ message: 'User not found' });
                 return;
             }
             res.status(200).json({ message: 'User deleted successfully', user: deletedUser });
         } catch (error) {
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }

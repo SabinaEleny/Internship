@@ -1,38 +1,24 @@
-import { Product, products } from '../entities/products';
+import ProductModel, { IProduct } from '../entities/products';
+import { UpdateQuery } from 'mongoose';
 
 export class ProductRepository {
-    public getAll(): Product[] {
-        return products;
+    public async getAll(): Promise<IProduct[]> {
+        return ProductModel.find({});
     }
 
-    public getById(id: number): Product | undefined {
-        return products.find(p => p.id === id);
+    public async getById(id: string): Promise<IProduct | null> {
+        return ProductModel.findById(id);
     }
 
-    public create(newProductData: Omit<Product, 'id'>): Product {
-        const newProduct: Product = {
-            id: products.length + 1,
-            ...newProductData,
-        };
-        products.push(newProduct);
-        return newProduct;
+    public async create(productData: Omit<IProduct, 'id'>): Promise<IProduct> {
+        return ProductModel.create(productData);
     }
 
-    public update(id: number, productUpdateData: Partial<Omit<Product, 'id'>>): Product | undefined {
-        const index = products.findIndex(p => p.id === id);
-        if (index === -1) {
-            return undefined;
-        }
-
-        products[index] = { ...products[index], ...productUpdateData };
-        return products[index];
+    public async update(id: string, productData: UpdateQuery<IProduct>): Promise<IProduct | null> {
+        return ProductModel.findByIdAndUpdate(id, productData, { new: true });
     }
 
-    public delete(id: number): Product | undefined {
-        const index = products.findIndex(p => p.id === id);
-        if (index === -1) {
-            return undefined;
-        }
-        return products.splice(index, 1)[0];
+    public async delete(id: string): Promise<IProduct | null> {
+        return ProductModel.findByIdAndDelete(id);
     }
 }

@@ -1,15 +1,30 @@
-import { ordersDb } from '../mock-db/orders.db';
-import {User} from "./users";
-import {Product} from "./products";
+import { Schema, model, Document, Types } from 'mongoose';
 
-export type Order = {
-    id: number;
-    totalAmount: number;
+export interface IOrder extends Document {
+    user: Types.ObjectId;
     productsPurchased: {
-        id: number;
+        product: Types.ObjectId;
         quantity: number;
     }[];
-    user: User;
-};
+    totalAmount: number;
+}
 
-export const orders: Order[] = ordersDb;
+const OrderSchema: Schema = new Schema(
+    {
+        user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+        productsPurchased: [
+            {
+                product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+                quantity: { type: Number, required: true, min: 1 },
+            },
+        ],
+        totalAmount: { type: Number, required: true },
+    },
+    {
+        versionKey: false
+    }
+);
+
+
+export default model<IOrder>('Order', OrderSchema);
+

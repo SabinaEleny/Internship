@@ -1,42 +1,27 @@
-import { User, users } from '../entities/users';
+import UserModel, { IUser } from '../entities/users';
 
 export class UserRepository {
-    public getAll(): User[] {
-        return [...users];
+    public async getAll(): Promise<IUser[]> {
+        return UserModel.find({}).select('-password'); // Exclude câmpul password
     }
 
-    public getById(id: number): User | undefined {
-        return users.find(u => u.id === id);
+    public async getById(id: string): Promise<IUser | null> {
+        return UserModel.findById(id).select('-password');
     }
 
-    public getByEmail(email: string): User | undefined {
-        return users.find(u => u.email.toLowerCase() === email.toLowerCase());
+    public async getByEmail(email: string): Promise<IUser | null> {
+        return UserModel.findOne({ email: email.toLowerCase() });
     }
 
-    public create(newUserData: Omit<User, 'id'>): User {
-        const newUser: User = {
-            id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
-            ...newUserData,
-        };
-        users.push(newUser);
-        return newUser;
+    public async create(userData: Omit<IUser, 'id'>): Promise<IUser> {
+        return UserModel.create(userData);
     }
 
-    public update(id: number, userUpdateData: Partial<Omit<User, 'id'>>): User | undefined {
-        const index = users.findIndex(u => u.id === id);
-        if (index === -1) {
-            return undefined;
-        }
-
-        users[index] = { ...users[index], ...userUpdateData };
-        return users[index];
+    public async update(id: string, userData: Partial<IUser>): Promise<IUser | null> {
+        return UserModel.findByIdAndUpdate(id, userData, { new: true }).select('-password');
     }
 
-    public delete(id: number): User | undefined {
-        const index = users.findIndex(u => u.id === id);
-        if (index === -1) {
-            return undefined;
-        }
-        return users.splice(index, 1)[0];
+    public async delete(id: string): Promise<IUser | null> {
+        return UserModel.findByIdAndDelete(id).select('-password');
     }
 }

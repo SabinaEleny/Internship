@@ -17,9 +17,9 @@ export class ProductRouter {
         router.delete('/products/:id', this.delete.bind(this));
     }
 
-    public getAll(_req: Request, res: Response): void {
+    public async getAll(_req: Request, res: Response): Promise<void> {
         try {
-            const products = this.productService.getAllProducts();
+            const products = await this.productService.getAll();
             res.status(200).json(products);
         } catch (error) {
             console.error(error);
@@ -27,10 +27,10 @@ export class ProductRouter {
         }
     }
 
-    public getById(req: Request, res: Response): void {
+    public async getById(req: Request, res: Response): Promise<void> {
         try {
-            const id = parseInt(req.params.id, 10);
-            const product = this.productService.getProductById(id);
+            const { id } = req.params;
+            const product = await this.productService.getById(id);
             if (!product) {
                 res.status(404).json({ message: 'Product not found' });
                 return;
@@ -42,9 +42,9 @@ export class ProductRouter {
         }
     }
 
-    public create(req: Request, res: Response): void {
+    public async create(req: Request, res: Response): Promise<void> {
         try {
-            const newProduct = this.productService.createProduct(req.body);
+            const newProduct = await this.productService.create(req.body);
             res.status(201).json(newProduct);
         } catch (error) {
             console.error(error);
@@ -52,10 +52,10 @@ export class ProductRouter {
         }
     }
 
-    public update(req: Request, res: Response): void {
+    public async update(req: Request, res: Response): Promise<void> {
         try {
-            const id = parseInt(req.params.id, 10);
-            const updatedProduct = this.productService.updateProduct(id, req.body);
+            const { id } = req.params;
+            const updatedProduct = await this.productService.update(id, req.body);
             if (!updatedProduct) {
                 res.status(404).json({ message: 'Product not found' });
                 return;
@@ -67,10 +67,10 @@ export class ProductRouter {
         }
     }
 
-    public delete(req: Request, res: Response): void {
+    public async delete(req: Request, res: Response): Promise<void> {
         try {
-            const id = parseInt(req.params.id, 10);
-            const deletedProduct = this.productService.deleteProduct(id);
+            const { id } = req.params;
+            const deletedProduct = await this.productService.delete(id);
             if (!deletedProduct) {
                 res.status(404).json({ message: 'Product not found' });
                 return;

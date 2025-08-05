@@ -1,4 +1,4 @@
-import { Product } from '../entities/products';
+import { IProduct } from '../entities/products';
 import { ProductRepository } from '../repositories/product.repository';
 
 export class ProductService {
@@ -8,23 +8,26 @@ export class ProductService {
         this.productRepository = new ProductRepository();
     }
 
-    public getAllProducts(): Product[] {
+    public async getAll(): Promise<IProduct[]> {
         return this.productRepository.getAll();
     }
 
-    public getProductById(id: number): Product | undefined {
-        return this.productRepository.getById(id);
+    public async getById(id: string): Promise<IProduct | undefined> {
+        const product = await this.productRepository.getById(id);
+        return product ?? undefined;
     }
 
-    public createProduct(productData: Omit<Product, 'id'>): Product {
+    public async create(productData: Omit<IProduct, 'id'>): Promise<IProduct> {
         return this.productRepository.create(productData);
     }
 
-    public updateProduct(id: number, productData: Partial<Omit<Product, 'id'>>): Product | undefined {
-        return this.productRepository.update(id, productData);
+    public async update(id: string, productData: Partial<IProduct>): Promise<IProduct | undefined> {
+        const product = await this.productRepository.update(id, productData);
+        return product ?? undefined;
     }
 
-    public deleteProduct(id: number): Product | undefined {
-        return this.productRepository.delete(id);
+    public async delete(id: string): Promise<IProduct | undefined> {
+        const product = await this.productRepository.delete(id);
+        return product ?? undefined;
     }
 }

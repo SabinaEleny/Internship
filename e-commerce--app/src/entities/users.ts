@@ -1,11 +1,27 @@
-import { usersDb } from '../mock-db/users.db';
+import { Schema, model, Document } from 'mongoose';
 
-export type User = {
-         id: number;
-         firstName: string;
-         lastName: string;
-         email: string;
-         password: string;
+export interface IUser extends Document {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
 }
 
-export const users: User[] = usersDb;
+const UserSchema: Schema = new Schema(
+    {
+        firstName: { type: String, required: true, trim: true },
+        lastName: { type: String, required: true, trim: true },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true
+        },
+        password: { type: String, required: true },
+    },
+    {
+        versionKey: false
+    }
+);
+
+export default model<IUser>('User', UserSchema);

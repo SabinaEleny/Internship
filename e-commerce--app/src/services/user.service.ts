@@ -1,6 +1,5 @@
-import { User } from '../entities/users';
+import { IUser } from '../entities/users';
 import { UserRepository } from '../repositories/user.repository';
-import {Product} from "../entities/products";
 
 export class UserService {
     private readonly userRepository: UserRepository;
@@ -9,31 +8,33 @@ export class UserService {
         this.userRepository = new UserRepository();
     }
 
-    public getAllUsers(): User[] {
+    public async getAll(): Promise<Partial<IUser>[]> {
         return this.userRepository.getAll();
     }
 
-    public getUserById(id: number): Omit<User, 'password'> | undefined {
-        const user = this.userRepository.getById(id);
-        if (!user) {
-            return undefined;
+    public async getById(id: string): Promise<IUser | undefined> {
+        const user = await this.userRepository.getById(id);
+        return user ?? undefined;
+    }
+
+    public async create(userData: Omit<IUser, 'id'>): Promise<Partial<IUser> | { error: string }> {
+        const existingUser = await this.userRepository.getByEmail(userData.email);
+        if (existingUser) {
+            return { error: 'Email is already in use.' };
         }
-        const { password, ...userWithoutPassword } = user;
+
+        const newUser = await this.userRepository.create(userData);
+        const { password, ...userWithoutPassword } = newUser.toObject();
         return userWithoutPassword;
     }
 
-    public createUser(userData: Omit<User, 'id'>): User | { error: string } {
-        if (this.userRepository.getByEmail(userData.email)) {
-            return { error: 'Email is already in use.' };
-        }
-        return this.userRepository.create(userData);
+    public async update(id: string, userData: Partial<IUser>): Promise<IUser | undefined> {
+        const user = await this.userRepository.update(id, userData);
+        return user ?? undefined;
     }
 
-    public updateUser(id: number, userData: Partial<Omit<User, 'id'>>): User | undefined {
-        return this.userRepository.update(id, userData);
-    }
-
-    public deleteUser(id: number): User | undefined {
-        return this.userRepository.delete(id);
+    public async delete(id: string): Promise<IUser | undefined> {
+        const user = await this.userRepository.delete(id);
+        return user ?? undefined;
     }
 }

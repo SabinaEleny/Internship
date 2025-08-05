@@ -4,11 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0273e916-e2da-42ec-955f-b1e3aa0bfe76" name="Changes" comment="e-commerce app(backend v1)">
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/Internship.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="0273e916-e2da-42ec-955f-b1e3aa0bfe76" name="Changes" comment="e-commerce app(before database connection)">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/seed.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/orders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/orders.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/products.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/products.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/order.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/order.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/product.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/product.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/user.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/user.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/order.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/order.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/product.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/product.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/user.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/user.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/order.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/order.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,10 +73,16 @@
     "nodejs_package_manager_path": "npm",
     "ts.external.directory.path": "D:\\PROJECTS\\Internship\\e-commerce--app\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mongo"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PROJECTS\Internship\e-commerce--app\src\services" />
       <recent name="D:\PROJECTS\Internship\e-commerce--app\src\errors" />
       <recent name="D:\PROJECTS\Internship\e-commerce--app\src\routes" />
       <recent name="D:\PROJECTS\Internship\e-commerce--app\src\constants" />
@@ -85,6 +105,7 @@
       <updated>1754300719773</updated>
       <workItem from="1754300721023" duration="11065000" />
       <workItem from="1754377274860" duration="668000" />
+      <workItem from="1754385291664" duration="13311000" />
     </task>
     <task id="LOCAL-00001" summary="e-commerce app(backend v1)">
       <option name="closed" value="true" />
@@ -94,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754312298542</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="e-commerce app(before database connection)">
+      <option name="closed" value="true" />
+      <created>1754397250079</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754397250080</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +131,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="e-commerce app(backend v1)" />
-    <option name="LAST_COMMIT_MESSAGE" value="e-commerce app(backend v1)" />
+    <MESSAGE value="e-commerce app(before database connection)" />
+    <option name="LAST_COMMIT_MESSAGE" value="e-commerce app(before database connection)" />
   </component>
 </project>
