@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-interface Config {
+type Config ={
     port: number;
     nodeEnv: string;
 }
