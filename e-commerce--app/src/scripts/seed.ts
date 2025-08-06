@@ -2,10 +2,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import mongoose from 'mongoose';
-import { connectDB } from './database';
-import ProductModel from './entities/products';
-import UserModel from './entities/users';
-import OrderModel from './entities/orders';
+import { connectDB } from '../database';
+import { ProductModel } from '../models/product.model';
+import { UserModel } from '../models/user.model';
+import { OrderModel } from '../models/order.model';
 
 const seedDatabase = async () => {
     try {

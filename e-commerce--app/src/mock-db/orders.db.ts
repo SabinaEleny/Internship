@@ -1,5 +1,5 @@
-import {Order} from "../entities/orders";
-import {users} from "../entities/users";
+import {Order} from "../models/order.model";
+import {users} from "../models/user.model";
 
 export const ordersDb: Order[] = [
     {

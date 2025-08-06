@@ -1,13 +1,17 @@
 import { Schema, model, Document, Types } from 'mongoose';
 
-export interface IOrder extends Document {
+export type Order = {
     user: Types.ObjectId;
     productsPurchased: {
         product: Types.ObjectId;
         quantity: number;
     }[];
     totalAmount: number;
-}
+};
+
+export type OrderDocument = Order & Document & {
+    _id: Types.ObjectId;
+};
 
 const OrderSchema: Schema = new Schema(
     {
@@ -15,16 +19,15 @@ const OrderSchema: Schema = new Schema(
         productsPurchased: [
             {
                 product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
-                quantity: { type: Number, required: true, min: 1 },
-            },
+                quantity: { type: Number, required: true, min: 1 }
+            }
         ],
-        totalAmount: { type: Number, required: true },
+        totalAmount: { type: Number, required: true }
     },
     {
-        versionKey: false
+        versionKey: false,
+        timestamps: true
     }
 );
 
-
-export default model<IOrder>('Order', OrderSchema);
-
+export const OrderModel = model<OrderDocument>('Order', OrderSchema);

@@ -4,22 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0273e916-e2da-42ec-955f-b1e3aa0bfe76" name="Changes" comment="e-commerce app(before database connection)">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/seed.ts" afterDir="false" />
+    <list default="true" id="0273e916-e2da-42ec-955f-b1e3aa0bfe76" name="Changes" comment="e-commerce app(database connection established)">
+      <change afterPath="$PROJECT_DIR$/src/middlewares/validation.handler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routers/base.router.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/order.schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/product.schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/user.schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/base.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/orders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/orders.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/products.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/products.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/orders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/order.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/products.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/product.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mock-db/orders.db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/mock-db/orders.db.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mock-db/products.db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/mock-db/products.db.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mock-db/users.db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/mock-db/users.db.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repositories/order.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/order.repository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repositories/product.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/product.repository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repositories/user.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/user.repository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routers/order.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/order.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routers/product.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/product.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routers/user.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/user.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/seed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/seed.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/order.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/order.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/product.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/user.service.ts" afterDir="false" />
@@ -59,34 +65,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "D:\\PROJECTS\\Internship\\e-commerce--app\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\PROJECTS\\Internship\\e-commerce--app\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mongo"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PROJECTS\Internship\e-commerce--app\src\scripts" />
       <recent name="D:\PROJECTS\Internship\e-commerce--app\src\services" />
       <recent name="D:\PROJECTS\Internship\e-commerce--app\src\errors" />
       <recent name="D:\PROJECTS\Internship\e-commerce--app\src\routes" />
       <recent name="D:\PROJECTS\Internship\e-commerce--app\src\constants" />
-      <recent name="D:\PROJECTS\Internship\e-commerce--app\src\models" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -105,7 +111,8 @@
       <updated>1754300719773</updated>
       <workItem from="1754300721023" duration="11065000" />
       <workItem from="1754377274860" duration="668000" />
-      <workItem from="1754385291664" duration="13311000" />
+      <workItem from="1754385291664" duration="14438000" />
+      <workItem from="1754465301956" duration="10390000" />
     </task>
     <task id="LOCAL-00001" summary="e-commerce app(backend v1)">
       <option name="closed" value="true" />
@@ -123,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754397250080</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="e-commerce app(database connection established)">
+      <option name="closed" value="true" />
+      <created>1754402622722</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1754402622722</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +147,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="e-commerce app(backend v1)" />
     <MESSAGE value="e-commerce app(before database connection)" />
-    <option name="LAST_COMMIT_MESSAGE" value="e-commerce app(before database connection)" />
+    <MESSAGE value="e-commerce app(database connection established)" />
+    <option name="LAST_COMMIT_MESSAGE" value="e-commerce app(database connection established)" />
   </component>
 </project>

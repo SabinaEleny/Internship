@@ -1,7 +1,9 @@
-import { IOrder } from '../entities/orders';
+import { Order, OrderDocument } from '../models/order.model';
 import { OrderRepository } from '../repositories/order.repository';
 import { UserRepository } from '../repositories/user.repository';
 import { ProductRepository } from '../repositories/product.repository';
+import { UpdateQuery } from 'mongoose';
+import { BaseServiceType } from './base.service';
 
 type OrderCreationDTO = {
     userId: string;
@@ -11,7 +13,7 @@ type OrderCreationDTO = {
     }[];
 };
 
-export class OrderService {
+export class OrderService implements BaseServiceType<OrderDocument>{
     private readonly orderRepository: OrderRepository;
     private readonly userRepository: UserRepository;
     private readonly productRepository: ProductRepository;
@@ -22,16 +24,17 @@ export class OrderService {
         this.productRepository = new ProductRepository();
     }
 
-    public async getAll(): Promise<IOrder[]> {
+    public async getAll(_query?: any): Promise<OrderDocument[]> {
         return this.orderRepository.getAll();
     }
 
-    public async getById(id: string): Promise<IOrder | undefined> {
+    public async getById(id: string): Promise<OrderDocument | undefined> {
         const order = await this.orderRepository.getById(id);
         return order ?? undefined;
     }
 
-    public async create(orderData: OrderCreationDTO): Promise<IOrder | { error: string }> {
+
+    public async create(orderData: OrderCreationDTO): Promise<OrderDocument | { error: string }> {
         const user = await this.userRepository.getById(orderData.userId);
         if (!user) {
             return { error: `User with ID ${orderData.userId} not found.` };
@@ -54,20 +57,29 @@ export class OrderService {
             productsPurchased.push({ product: product._id, quantity: item.quantity });
         }
 
-        for (const item of orderData.products) {
-            await this.productRepository.update(item.id, { $inc: { stock: -item.quantity } });
-        }
-
-        const newOrderData = {
+        const newOrderData: Order = {
             user: user._id,
             productsPurchased,
             totalAmount,
         };
 
-        return this.orderRepository.create(newOrderData as any);
+
+        for (const item of orderData.products) {
+            const updateQuery: UpdateQuery<any> = { $inc: { stock: -item.quantity } };
+            await this.productRepository.update(item.id, updateQuery);
+        }
+
+
+        return this.orderRepository.create(newOrderData);
     }
 
-    public async delete(id: string): Promise<IOrder | undefined> {
+    public async update(id: string, data: any): Promise<OrderDocument | undefined> {
+        console.log(`Updating order ${id} is not implemented yet.`);
+        return undefined;
+    }
+
+
+    public async delete(id: string): Promise<OrderDocument | undefined> {
         const order = await this.orderRepository.delete(id);
         return order ?? undefined;
     }

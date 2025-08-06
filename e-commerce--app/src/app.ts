@@ -29,17 +29,17 @@ export class App {
     }
 
     private initializeRoutes(): void {
-        const apiRouter = Router();
+        const productRouter = new ProductRouter();
+        const userRouter = new UserRouter();
+        const orderRouter = new OrderRouter();
 
-        new ProductRouter(apiRouter);
-        new UserRouter(apiRouter);
-        new OrderRouter(apiRouter);
-
-        this.app.get('/', (_req, res) => {
-            res.send('Welcome to the API');
+        this.app.get('/', (req, res) => {
+            res.status(200).json({ message: 'Welcome to the E-Commerce API! Server is running.' });
         });
 
-        this.app.use('/api/', apiRouter);
+        this.app.use('/api/products', productRouter.router);
+        this.app.use('/api/users', userRouter.router);
+        this.app.use('/api/orders', orderRouter.router);
     }
 
     private initializeErrorHandling(): void {
